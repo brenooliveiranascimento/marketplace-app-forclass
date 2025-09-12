@@ -3,7 +3,7 @@
     "name": "market-place-app",
     "slug": "market-place-app",
     "version": "1.0.0",
-    "schema": "marketplace",
+    "scheme": "marketplace",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -14,7 +14,8 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.appsunicadtec.market-place-app"
     },
     "android": {
       "adaptiveIcon": {
