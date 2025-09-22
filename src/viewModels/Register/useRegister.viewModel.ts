@@ -1,12 +1,28 @@
-import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { RegisterFormData, registerScheme } from "./register.scheme";
 
 export const useRegisterViewModel = () => {
-  const [userData, setUserData] = useState({
-    name: "Breno",
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<RegisterFormData>({
+    resolver: yupResolver(registerScheme),
+    defaultValues: {
+      phone: "",
+      confirmPassword: "",
+      email: "",
+      name: "",
+      password: "",
+    },
   });
 
+  const onSubmit = handleSubmit(({}) => {});
+
   return {
-    userData,
-    setUserData,
+    control,
+    errors,
+    onSubmit,
   };
 };
