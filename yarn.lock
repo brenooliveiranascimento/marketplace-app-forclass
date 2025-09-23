@@ -999,7 +999,7 @@
     postcss "~8.4.32"
     resolve-from "^5.0.0"
 
-"@expo/metro-runtime@~6.1.2":
+"@expo/metro-runtime@^6.1.2", "@expo/metro-runtime@~6.1.2":
   version "6.1.2"
   resolved "https://registry.yarnpkg.com/@expo/metro-runtime/-/metro-runtime-6.1.2.tgz#5a4ff117df6115f9c9d4dcc561065e16d69c078b"
   integrity sha512-nvM+Qv45QH7pmYvP8JB1G8JpScrWND3KrMA6ZKe62cwwNiX/BjHU28Ear0v/4bQWXlOY0mv6B8CDIm8JxXde9g==
@@ -2834,11 +2834,12 @@ expo-modules-core@3.0.15:
   dependencies:
     invariant "^2.2.4"
 
-expo-router@~6.0.0:
-  version "6.0.2"
-  resolved "https://registry.yarnpkg.com/expo-router/-/expo-router-6.0.2.tgz#fb918901c04e3bf0782faf72ccd902e7e64a7cec"
-  integrity sha512-yVNElc/hB5gsbA7pQrP4JPWvANK2r2uCqjocuKHI8lDC1bdaMbEEyYzyKaGIRD5Bx6RuEyy3D5UvGArOZZMi8Q==
+expo-router@6.0.4:
+  version "6.0.4"
+  resolved "https://registry.yarnpkg.com/expo-router/-/expo-router-6.0.4.tgz#f9c4c79e060b45d4af842549b662da0377066ace"
+  integrity sha512-RZRHAhUCCU6QNTnVhoy0PAJxbLy7OF78F4/4fwJna3cHGTtokPvJYUwz8kOZOOub/7l8jqgxnT7eKAk1dw9uXQ==
   dependencies:
+    "@expo/metro-runtime" "^6.1.2"
     "@expo/schema-utils" "^0.1.7"
     "@expo/server" "^0.7.4"
     "@radix-ui/react-slot" "1.2.0"
