@@ -3,7 +3,7 @@ import { Redirect } from "expo-router";
 export default function App() {
   const userData = true;
 
-  if (!userData) {
+  if (userData) {
     return <Redirect href={"/(private)"} />;
   }
 

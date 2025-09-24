@@ -17,7 +17,7 @@ export const useRegisterViewModel = () => {
     defaultValues: {
       phone: "12312312312",
       confirmPassword: "123123123",
-      email: "teste123123teste@gmail.com",
+      email: "teste123123testeteste@gmail.com",
       name: "teste1",
       password: "123123123",
     },
