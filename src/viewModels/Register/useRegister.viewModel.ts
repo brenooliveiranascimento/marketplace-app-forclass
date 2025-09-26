@@ -35,8 +35,6 @@ export const useRegisterViewModel = () => {
     });
   });
 
-  console.log(user);
-
   return {
     control,
     errors,
