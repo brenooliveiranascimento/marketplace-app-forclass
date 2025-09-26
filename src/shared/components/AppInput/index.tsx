@@ -1,19 +1,42 @@
-import { Pressable, TextInput, TouchableOpacity, View } from "react-native";
-import { appInputVariants } from "./input.variants";
+import {
+  Pressable,
+  Text,
+  TextInput,
+  TextInputProps,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import { appInputVariants, AppInputVariantsProps } from "./input.variants";
 import { Ionicons } from "@expo/vector-icons";
+import { FC } from "react";
 
-export const AppInput = () => {
+export interface AppInputProps extends TextInputProps, AppInputVariantsProps {
+  label?: string;
+  leftIcon?: keyof typeof Ionicons.glyphMap;
+  rightIcon?: keyof typeof Ionicons.glyphMap;
+  containerClassName?: string;
+  mask?: (value: string) => void | string;
+}
+
+export const AppInput: FC<AppInputProps> = ({
+  label,
+  leftIcon,
+  rightIcon,
+  containerClassName,
+  ...textInputProps
+}) => {
   const styles = appInputVariants();
 
   return (
-    <View>
-      <Pressable>
-        <Ionicons name="person" />
+    <View className={styles.container({ className: containerClassName })}>
+      <Text className={styles.label()}>Label</Text>
+      <Pressable className={styles.wrapper()}>
+        <Ionicons size={22} name="person" />
 
-        <TextInput />
+        <TextInput className={styles.input()} {...textInputProps} />
 
         <TouchableOpacity>
-          <Ionicons name="eye-off-outline" />
+          <Ionicons size={22} name="eye-off-outline" />
         </TouchableOpacity>
       </Pressable>
     </View>
