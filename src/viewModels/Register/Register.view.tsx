@@ -15,7 +15,6 @@ export const RegisterView: FC<ReturnType<typeof useRegisterViewModel>> = ({
         label="E-mail"
         value={email}
         onChangeText={setEmail}
-        error="E-mail inválido"
       />
       <AppInput
         leftIcon="lock-closed-outline"
