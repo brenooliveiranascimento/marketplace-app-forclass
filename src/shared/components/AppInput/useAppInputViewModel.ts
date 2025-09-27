@@ -60,6 +60,8 @@ export const useAppInputViewModel = ({
   const handleTextChange = (text: string) => {
     if (mask) {
       onChangeText?.(mask(text) || "");
+    } else {
+      onChangeText?.(text);
     }
   };
 
