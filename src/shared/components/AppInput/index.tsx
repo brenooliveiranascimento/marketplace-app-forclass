@@ -9,6 +9,7 @@ import {
 import { appInputVariants, AppInputVariantsProps } from "./input.variants";
 import { Ionicons } from "@expo/vector-icons";
 import { FC } from "react";
+import { useAppInputViewModel } from "./useAppInputViewModel";
 
 export interface AppInputProps extends TextInputProps, AppInputVariantsProps {
   label?: string;
@@ -16,6 +17,7 @@ export interface AppInputProps extends TextInputProps, AppInputVariantsProps {
   rightIcon?: keyof typeof Ionicons.glyphMap;
   containerClassName?: string;
   mask?: (value: string) => void | string;
+  error?: string;
 }
 
 export const AppInput: FC<AppInputProps> = ({
@@ -23,8 +25,36 @@ export const AppInput: FC<AppInputProps> = ({
   leftIcon,
   rightIcon,
   containerClassName,
+  value,
+  isError,
+  secureTextEntry = false,
+  onBlur,
+  onFocus,
+  onChangeText,
+  mask,
+  error,
+  isDisabled,
   ...textInputProps
 }) => {
+  const {
+    getIconColor,
+    handleBlur,
+    handleFocus,
+    handlePasswordToggle,
+    handleWrapperPress,
+    showPassword,
+  } = useAppInputViewModel({
+    error,
+    onBlur,
+    onFocus,
+    isError: !!error,
+    mask,
+    onChangeText,
+    isDisabled,
+    secureTextEntry,
+    value,
+  });
+
   const styles = appInputVariants();
 
   return (
