@@ -25,7 +25,7 @@ export const useAppInputViewModel = ({
   secureTextEntry,
   value,
 }: AppInputViewModelProps) => {
-  const [showPassword, setShowPassord] = useState(false);
+  const [showPassword, setShowPassord] = useState(secureTextEntry);
   const [isFocused, setIsFocused] = useState(false);
 
   const inputRef = useRef<TextInput>(null);
