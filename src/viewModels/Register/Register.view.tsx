@@ -3,6 +3,7 @@ import { Text, TouchableOpacity, View } from "react-native";
 import { useRegisterViewModel } from "./useRegister.viewModel";
 import { AppInput } from "../../shared/components/AppInput";
 import { Controller } from "react-hook-form";
+import { AppInputController } from "../../shared/components/AppInputController";
 
 export const RegisterView: FC<ReturnType<typeof useRegisterViewModel>> = ({
   onSubmit,
@@ -10,18 +11,11 @@ export const RegisterView: FC<ReturnType<typeof useRegisterViewModel>> = ({
 }) => {
   return (
     <View className="flex-1  justify-center">
-      <Controller
+      <AppInputController
+        leftIcon="mail-outline"
+        label="E-MAIL"
         control={control}
         name="email"
-        render={({ field: { onChange, onBlur, value } }) => (
-          <AppInput
-            leftIcon="lock-closed-outline"
-            label="Senha"
-            onChangeText={onChange}
-            onBlur={onBlur}
-            value={value}
-          />
-        )}
       />
 
       <TouchableOpacity onPress={onSubmit}>
