@@ -15,43 +15,51 @@ export const LoginView: FC<ReturnType<typeof useLoginViewModel>> = ({
   return (
     <KeyboardContainer>
       <View className="flex-1 items-center justify-center px-[40px]">
-        <AuthFormHeader
-          subTitle="Informe seu e-mail e senha para entrar"
-          title="Acesse sua conta"
-        />
+        <View className="flex-1 w-full items-center justify-center">
+          <AuthFormHeader
+            subTitle="Informe seu e-mail e senha para entrar"
+            title="Acesse sua conta"
+          />
 
-        <AppInputController
-          control={control}
-          name="email"
-          leftIcon="mail-outline"
-          label="E-MAIL"
-          placeholder="mail@exemple.com.be"
-        />
+          <AppInputController
+            control={control}
+            name="email"
+            leftIcon="mail-outline"
+            label="E-MAIL"
+            placeholder="mail@exemple.com.be"
+          />
 
-        <AppInputController
-          control={control}
-          name="password"
-          leftIcon="lock-closed-outline"
-          label="SENHA"
-          placeholder="Sua senha"
-          secureTextEntry
-        />
+          <AppInputController
+            control={control}
+            name="password"
+            leftIcon="lock-closed-outline"
+            label="SENHA"
+            placeholder="Sua senha"
+            secureTextEntry
+          />
 
-        <TouchableOpacity onPress={onSubmit}>
-          <Text>Login</Text>
-        </TouchableOpacity>
+          <AppButton
+            className="mt-6"
+            rightIcon="arrow-forward"
+            onPress={onSubmit}
+          >
+            Login
+          </AppButton>
+        </View>
 
-        <TouchableOpacity onPress={() => router.push("/register")}>
-          <Text>Registro</Text>
-        </TouchableOpacity>
+        <View className="flex-2 pb-16">
+          <Text className="text-base mb-6 text-gray-300">
+            Ainda não tem uma conta?
+          </Text>
 
-        <AppButton
-          variant="outlined"
-          rightIcon="arrow-forward"
-          onPress={() => alert("TESTE")}
-        >
-          Teste
-        </AppButton>
+          <AppButton
+            variant="outlined"
+            rightIcon="arrow-forward"
+            onPress={() => router.push("/register")}
+          >
+            Registro
+          </AppButton>
+        </View>
       </View>
     </KeyboardContainer>
   );

@@ -22,11 +22,12 @@ export const AppButton: FC<AppButtonProps> = ({
   variant = "field",
   isLoading,
   isDisabled,
+  className,
   ...rest
 }) => {
-  const contentColor =
-    variant === "field" ? colors.white : colors["purple-base"];
+  const contentColor = variant === "field" ? colors.white : colors["blue-base"];
 
+  console.log(contentColor);
   const styles = buttonVariants({
     hasIcon: !!leftIcon || !!rightIcon,
     isDisabled,
@@ -53,7 +54,7 @@ export const AppButton: FC<AppButtonProps> = ({
   };
 
   return (
-    <TouchableOpacity className={styles.base()} {...rest}>
+    <TouchableOpacity className={styles.base({ className })} {...rest}>
       {renderContent()}
     </TouchableOpacity>
   );
