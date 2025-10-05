@@ -17,7 +17,7 @@ export const AppButton: FC<AppButtonProps> = ({
 
   return (
     <TouchableOpacity className={styles.base()} {...rest}>
-      <Text>{children}</Text>
+      <Text className={styles.text()}>{children}</Text>
     </TouchableOpacity>
   );
 };
