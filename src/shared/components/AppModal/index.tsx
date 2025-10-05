@@ -19,7 +19,7 @@ export const AppModal = () => {
       <TouchableWithoutFeedback onPress={close}>
         <View className="flex-1 bg-black/50 justify-center items-center px-6">
           <TouchableWithoutFeedback onPress={() => {}}>
-            {content}
+            <View>{content}</View>
           </TouchableWithoutFeedback>
         </View>
       </TouchableWithoutFeedback>
