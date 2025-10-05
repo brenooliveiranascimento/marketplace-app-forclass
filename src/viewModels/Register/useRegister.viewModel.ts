@@ -4,11 +4,13 @@ import { RegisterFormData, registerScheme } from "./register.scheme";
 import { useRegisterMutation } from "../../shared/queries/auth/use-register.mutation";
 import { useUserStore } from "../../shared/store/user-store";
 import { useAppModal } from "../../shared/hooks/useAppModal";
+import { useCamera } from "../../shared/hooks/useCamera";
 
 export const useRegisterViewModel = () => {
   const userRegisterMutation = useRegisterMutation();
   const { setSession, user } = useUserStore();
   const modals = useAppModal();
+  const { openCamera } = useCamera({});
 
   const handleSelectAvatar = () => {
     modals.showSelection({
@@ -21,12 +23,11 @@ export const useRegisterViewModel = () => {
           variant: "primary",
           onPres: () => alert("Galeria"),
         },
-
         {
           text: "Câmera",
           icon: "camera",
           variant: "primary",
-          onPres: () => alert("Camera"),
+          onPres: openCamera,
         },
       ],
     });
