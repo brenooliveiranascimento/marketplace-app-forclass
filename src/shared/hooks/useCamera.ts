@@ -1,20 +1,9 @@
 import * as ImagePicker from "expo-image-picker";
 import { useCallback, useState } from "react";
 import { Toast } from "toastify-react-native";
+import { ImagePickerOptions } from "expo-image-picker";
 
-interface UseCameraOptions {
-  aspect?: [number, number];
-  quality?: number;
-  allowsEditing?: boolean;
-  exif?: boolean;
-}
-
-export const useCamera = ({
-  allowsEditing,
-  aspect,
-  exif,
-  quality,
-}: UseCameraOptions) => {
+export const useCamera = (pickerOptions: ImagePickerOptions) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const requestCameraPermission = useCallback(async (): Promise<boolean> => {
@@ -42,12 +31,7 @@ export const useCamera = ({
 
       if (!hasPermission) return null;
 
-      const result = await ImagePicker.launchCameraAsync({
-        allowsEditing,
-        aspect,
-        exif,
-        quality,
-      });
+      const result = await ImagePicker.launchCameraAsync(pickerOptions);
 
       if (!result.canceled && result.assets && result.assets.length > 0) {
         Toast.success("Foto capturada com sucesso!", "top");
