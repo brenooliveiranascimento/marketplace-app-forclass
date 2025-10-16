@@ -25,7 +25,8 @@ export const AppButton: FC<AppButtonProps> = ({
   className,
   ...rest
 }) => {
-  const contentColor = variant === "field" ? colors.white : colors["blue-base"];
+  const contentColor =
+    variant === "field" ? colors.white : colors["purple-base"];
 
   console.log(contentColor);
   const styles = buttonVariants({

@@ -5,14 +5,16 @@ import { useRegisterMutation } from "../../shared/queries/auth/use-register.muta
 import { useUserStore } from "../../shared/store/user-store";
 import { useImage } from "../../shared/hooks/useImage";
 import { useState } from "react";
+import { CameraType } from "expo-image-picker";
 
 export const useRegisterViewModel = () => {
   const userRegisterMutation = useRegisterMutation();
   const { setSession } = useUserStore();
-  const [avatarIri, setAvatarUri] = useState<string | null>(null);
+  const [avatarUri, setAvatarUri] = useState<string | null>(null);
 
   const { handleSelectImage } = useImage({
     callback: setAvatarUri,
+    cameraType: CameraType.front,
   });
 
   const handleSelectAvatar = async () => {
@@ -51,5 +53,6 @@ export const useRegisterViewModel = () => {
     errors,
     onSubmit,
     handleSelectAvatar,
+    avatarUri,
   };
 };
