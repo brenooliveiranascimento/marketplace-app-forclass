@@ -29,7 +29,7 @@ export const uploadAvatar = async (avatarUri: string) => {
     uri: avatarUri,
     type: "image/jpeg",
     name: "avatar.jpg",
-  } as any);
+  } as unknown as Blob);
 
   const { data } = await marketPlaceApiClient.post<UploadAvatarResponse>(
     "/user/avatar",
