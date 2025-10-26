@@ -3,7 +3,6 @@ import { useModalStore } from "../../store/modal-store";
 
 export const AppModal = () => {
   const { isOpen, config, content, close } = useModalStore();
-  console.log(isOpen);
   if (!isOpen || !content) {
     return null;
   }
