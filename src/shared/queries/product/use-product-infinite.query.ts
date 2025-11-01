@@ -33,6 +33,7 @@ export const useProductIniniteQuery = () => {
     },
     initialPageParam: 1,
     queryKey: ["products"],
+    staleTime: 1000 * 60 * 1,
   });
 
   const products = data?.pages.flatMap((page) => page.data);

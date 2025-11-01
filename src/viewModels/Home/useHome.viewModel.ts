@@ -23,10 +23,15 @@ export const useHomeViewModel = () => {
     await refetch();
   };
 
+  const handleEnReached = () => {
+    handleLoadMore();
+  };
+
   console.log(JSON.stringify(products, null, 2));
   return {
     handleLoadMore,
     handleRefresh,
     products,
+    handleEnReached,
   };
 };
