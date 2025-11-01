@@ -6,11 +6,18 @@ import { ProductInterface } from "../../shared/interfaces/product";
 import { ProductCard } from "./components/ProductCard";
 import { FC } from "react";
 import { useHomeViewModel } from "./useHome.viewModel";
+import { Footer } from "./components/Footer";
+import { useUserStore } from "../../shared/store/user-store";
 
 export const HomeView: FC<ReturnType<typeof useHomeViewModel>> = ({
   products,
   handleEnReached,
+  hasNextPage,
+  isLoading,
+  isFetchingNextPage,
 }) => {
+  console.log({ hasNextPage, isLoading, isFetchingNextPage });
+
   return (
     <SafeAreaView edges={["top"]} className="flex-1">
       <FlatList
@@ -18,6 +25,11 @@ export const HomeView: FC<ReturnType<typeof useHomeViewModel>> = ({
         renderItem={({ item }) => <ProductCard product={item} />}
         keyExtractor={({ id }) => `product-list-item-${id}`}
         numColumns={2}
+        ListFooterComponent={
+          <Footer
+            isLoading={hasNextPage && Boolean(isLoading || isFetchingNextPage)}
+          />
+        }
         onEndReached={handleEnReached}
         columnWrapperStyle={{
           justifyContent: "space-between",

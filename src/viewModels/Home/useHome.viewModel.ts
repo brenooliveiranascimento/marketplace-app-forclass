@@ -27,11 +27,13 @@ export const useHomeViewModel = () => {
     handleLoadMore();
   };
 
-  console.log(JSON.stringify(products, null, 2));
   return {
     handleLoadMore,
     handleRefresh,
     products,
     handleEnReached,
+    isLoading,
+    hasNextPage,
+    isFetchingNextPage,
   };
 };
