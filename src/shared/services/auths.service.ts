@@ -47,3 +47,12 @@ export const uploadAvatar = async (avatarUri: string) => {
 
   return data;
 };
+
+export const handleRefreshToken = async (refreshToken: string) => {
+  const { data } = await marketPlaceApiClient.post<{
+    token: string;
+    refreshToken: string;
+  }>("/auth/refresh", { refreshToken });
+
+  return data;
+};
