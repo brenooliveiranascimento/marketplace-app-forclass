@@ -1,7 +1,10 @@
-import { useProductIniniteQuery } from "../../shared/queries/product/use-product-infinite.query";
+import { useProductIninityQuery } from "../../shared/queries/product/use-product-infinite.query";
+import { useFilterStore } from "../../shared/store/use-filter-store";
 import { useUserStore } from "../../shared/store/user-store";
 
 export const useHomeViewModel = () => {
+  const { appliedFilterState } = useFilterStore();
+
   const {
     error,
     fetchNextPage,
@@ -11,8 +14,11 @@ export const useHomeViewModel = () => {
     isRefetching,
     refetch,
     products,
-  } = useProductIniniteQuery();
+  } = useProductIninityQuery({
+    filters: appliedFilterState,
+  });
 
+  console.log({ isLoading });
   const handleLoadMore = () => {
     if (hasNextPage && !isFetchingNextPage && !isLoading) {
       fetchNextPage();
