@@ -5,8 +5,14 @@ import { Ionicons } from "@expo/vector-icons";
 import { colors } from "../../../../styles/colors";
 import { AppInput } from "../../../../shared/components/AppInput";
 import { AppButton } from "../../../../shared/components/AppButton";
+import { useUserStore } from "../../../../shared/store/user-store";
 
-export const FilterView: FC<ReturnType<typeof useFilterViewModel>> = ({}) => {
+export const FilterView: FC<ReturnType<typeof useFilterViewModel>> = ({
+  isLoading,
+  productsCategory,
+}) => {
+  console.log(productsCategory);
+
   return (
     <View>
       <View className="flex-row items-center justify-between p-4 px-6">
