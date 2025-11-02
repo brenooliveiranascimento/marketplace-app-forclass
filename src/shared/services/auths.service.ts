@@ -19,6 +19,8 @@ export const login = async (userData: LoginHttpParams) => {
     userData
   );
 
+  data.user.avatarUrl = `${baseURL}${data.user.avatarUrl}`;
+
   return data;
 };
 

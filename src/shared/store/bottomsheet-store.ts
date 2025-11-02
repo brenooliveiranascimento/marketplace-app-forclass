@@ -11,7 +11,7 @@ interface BottomSheetStore {
   content: ReactNode | null;
   config: BottomSheetConfig;
 
-  open: (content: { content: ReactNode; config: BottomSheetConfig }) => void;
+  open: (content: { content: ReactNode; config?: BottomSheetConfig }) => void;
   close: () => void;
 }
 
