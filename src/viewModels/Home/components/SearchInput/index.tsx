@@ -3,6 +3,7 @@ import { AppInput } from "../../../../shared/components/AppInput";
 import { Ionicons } from "@expo/vector-icons";
 import { colors } from "../../../../styles/colors";
 import { useBottomSheetStore } from "../../../../shared/store/bottomsheet-store";
+import { Filter } from "../Filter";
 
 export const SearchInput = () => {
   const { open } = useBottomSheetStore();
@@ -22,7 +23,7 @@ export const SearchInput = () => {
         <TouchableOpacity
           onPress={() => {
             open({
-              content: <Text>Teste</Text>,
+              content: <Filter />,
             });
           }}
           className="ml-5 mt-6 items-center justify-center rounded-lg border-[1px] h-[48px] w-[48px] border-purple-base"
