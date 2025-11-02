@@ -6,13 +6,12 @@ import { colors } from "../../../../styles/colors";
 import { AppInput } from "../../../../shared/components/AppInput";
 import { AppButton } from "../../../../shared/components/AppButton";
 import { useUserStore } from "../../../../shared/store/user-store";
+import Checkbox from "expo-checkbox";
 
 export const FilterView: FC<ReturnType<typeof useFilterViewModel>> = ({
   isLoading,
   productsCategory,
 }) => {
-  console.log(productsCategory);
-
   return (
     <View>
       <View className="flex-row items-center justify-between p-4 px-6">
@@ -45,6 +44,25 @@ export const FilterView: FC<ReturnType<typeof useFilterViewModel>> = ({
         </View>
 
         <Text className="font-semibold text-base text-gray-300">CATEGORIA</Text>
+
+        {isLoading ? (
+          <Text>Carregando categorias...</Text>
+        ) : (
+          <View className="mb-6 gap-3">
+            {productsCategory?.map(({ name, id }) => (
+              <TouchableOpacity
+                className="flex-row items-center py-2"
+                key={`product-cateogry-${id}`}
+              >
+                <Checkbox
+                  color={colors["purple-base"]}
+                  className="mr-3 rounded-full"
+                />
+                <Text className="text-base text-gray-400">{name}</Text>
+              </TouchableOpacity>
+            ))}
+          </View>
+        )}
 
         <View className="flex-row gap-3 mt-4 mb-6">
           <View className="flex-1">
