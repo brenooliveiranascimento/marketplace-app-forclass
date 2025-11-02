@@ -5,12 +5,15 @@ import { Ionicons } from "@expo/vector-icons";
 import { colors } from "../../../../styles/colors";
 import { AppInput } from "../../../../shared/components/AppInput";
 import { AppButton } from "../../../../shared/components/AppButton";
-import { useUserStore } from "../../../../shared/store/user-store";
 import Checkbox from "expo-checkbox";
 
 export const FilterView: FC<ReturnType<typeof useFilterViewModel>> = ({
   isLoading,
   productsCategory,
+  handleCategoryToglle,
+  handleValueMaxChange,
+  handleValueMinChange,
+  selectedCategories,
 }) => {
   return (
     <View>
@@ -29,6 +32,7 @@ export const FilterView: FC<ReturnType<typeof useFilterViewModel>> = ({
         <View className="flex-row mb-4 w-[100%]">
           <View className="flex-1">
             <AppInput
+              onChangeText={(text) => handleValueMinChange(Number(text))}
               placeholder="De"
               keyboardType="numeric"
               containerClassName="w-[90%]"
@@ -36,7 +40,8 @@ export const FilterView: FC<ReturnType<typeof useFilterViewModel>> = ({
           </View>
           <View className="flex-1">
             <AppInput
-              placeholder="De"
+              onChangeText={(text) => handleValueMaxChange(Number(text))}
+              placeholder="Até"
               keyboardType="numeric"
               containerClassName="w-[90%]"
             />
@@ -51,10 +56,13 @@ export const FilterView: FC<ReturnType<typeof useFilterViewModel>> = ({
           <View className="mb-6 gap-3">
             {productsCategory?.map(({ name, id }) => (
               <TouchableOpacity
+                onPress={() => handleCategoryToglle(id)}
                 className="flex-row items-center py-2"
                 key={`product-cateogry-${id}`}
               >
                 <Checkbox
+                  value={selectedCategories.includes(id)}
+                  onValueChange={() => handleCategoryToglle(id)}
                   color={colors["purple-base"]}
                   className="mr-3 rounded-full"
                 />
@@ -69,7 +77,7 @@ export const FilterView: FC<ReturnType<typeof useFilterViewModel>> = ({
             <AppButton variant="outlined">Limpar filtro</AppButton>
           </View>
           <View className="flex-1">
-            <AppButton>Limpar filtro</AppButton>
+            <AppButton>Filtrar</AppButton>
           </View>
         </View>
       </View>
