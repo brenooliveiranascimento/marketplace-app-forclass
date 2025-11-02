@@ -55,6 +55,7 @@ export class MarketPlaceApiClient {
         return response;
       },
       async (error) => {
+        console.log(error);
         const originalRequest = error.config;
 
         if (
