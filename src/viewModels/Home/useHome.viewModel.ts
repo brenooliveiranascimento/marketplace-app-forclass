@@ -1,9 +1,14 @@
+import { useState } from "react";
 import { useProductIninityQuery } from "../../shared/queries/product/use-product-infinite.query";
 import { useFilterStore } from "../../shared/store/use-filter-store";
 import { useUserStore } from "../../shared/store/user-store";
+import { useDebounce } from "../../shared/hooks/useDebounde";
 
 export const useHomeViewModel = () => {
   const { appliedFilterState } = useFilterStore();
+  const [searchInputText, setSearchInputText] = useState("");
+
+  const currentSearchText = useDebounce(searchInputText);
 
   const {
     error,
@@ -15,7 +20,7 @@ export const useHomeViewModel = () => {
     refetch,
     products,
   } = useProductIninityQuery({
-    filters: appliedFilterState,
+    filters: { ...appliedFilterState, searchText: currentSearchText },
   });
 
   console.log({ isLoading });
@@ -42,5 +47,7 @@ export const useHomeViewModel = () => {
     hasNextPage,
     isFetchingNextPage,
     isRefetching,
+    setSearchInputText,
+    searchInputText,
   };
 };

@@ -3,10 +3,11 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { HomeHeader } from "./components/Header";
 import { SearchInput } from "./components/SearchInput";
 import { ProductCard } from "./components/ProductCard";
-import { FC } from "react";
+import { FC, memo } from "react";
 import { useHomeViewModel } from "./useHome.viewModel";
 import { Footer } from "./components/Footer";
 import { colors } from "../../styles/colors";
+import { RenderHeader } from "./components/RenderHeader";
 
 export const HomeView: FC<ReturnType<typeof useHomeViewModel>> = ({
   products,
@@ -16,6 +17,8 @@ export const HomeView: FC<ReturnType<typeof useHomeViewModel>> = ({
   isFetchingNextPage,
   handleRefresh,
   isRefetching,
+  setSearchInputText,
+  searchInputText,
 }) => {
   return (
     <SafeAreaView edges={["top"]} className="flex-1">
@@ -33,12 +36,12 @@ export const HomeView: FC<ReturnType<typeof useHomeViewModel>> = ({
         columnWrapperStyle={{
           justifyContent: "space-between",
         }}
-        ListHeaderComponent={() => (
-          <>
-            <HomeHeader />
-            <SearchInput />
-          </>
-        )}
+        ListHeaderComponent={
+          <RenderHeader
+            searchInputText={searchInputText}
+            setSearchInputText={setSearchInputText}
+          />
+        }
         contentContainerClassName="px-[16px] pb-[120px]"
         refreshControl={
           <RefreshControl

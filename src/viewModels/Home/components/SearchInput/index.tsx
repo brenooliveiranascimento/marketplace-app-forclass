@@ -4,8 +4,17 @@ import { Ionicons } from "@expo/vector-icons";
 import { colors } from "../../../../styles/colors";
 import { useBottomSheetStore } from "../../../../shared/store/bottomsheet-store";
 import { Filter } from "../Filter";
+import { FC } from "react";
 
-export const SearchInput = () => {
+interface SearchInputParams {
+  setSearchInputText: (text: string) => void;
+  inputValue: string;
+}
+
+export const SearchInput: FC<SearchInputParams> = ({
+  setSearchInputText,
+  inputValue,
+}) => {
   const { open } = useBottomSheetStore();
 
   return (
@@ -14,10 +23,12 @@ export const SearchInput = () => {
       <View className="flex-row">
         <View className="flex-1">
           <AppInput
+            onChangeText={setSearchInputText}
             placeholder="Pesquisar"
             leftIcon="search"
             returnKeyType="search"
             className="text-lg flex-1"
+            value={inputValue}
           />
         </View>
 
