@@ -11,6 +11,7 @@ export const ProductCardView: FC<
 > = ({ product, displayName, formatRating }) => {
   return (
     <TouchableOpacity
+      activeOpacity={0.3}
       onPress={() => router.push(`/product/${product.id}`)}
       className="w-[48%] my-1 rounded-xl shadow-sm overflow-hidden h-[157px] p-[4px] bg-white mb-2"
     >

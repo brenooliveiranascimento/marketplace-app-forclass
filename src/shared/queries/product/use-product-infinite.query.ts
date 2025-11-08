@@ -1,6 +1,7 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { getProducts } from "../../services/product.service";
 import { FilterState } from "../../store/use-filter-store";
+import { BuildImageUrl } from "../../helpers/buildImageUrl";
 
 interface productsInfinityQueryParam {
   filters?: FilterState;
@@ -49,7 +50,12 @@ export const useProductIninityQuery = ({
     staleTime: 1000 * 60 * 1,
   });
 
-  const products = data?.pages.flatMap((page) => page.data);
+  const products = data?.pages
+    .flatMap((page) => page.data)
+    .map((product) => ({
+      ...product,
+      photo: BuildImageUrl(product.photo),
+    }));
 
   return {
     products,
