@@ -2,6 +2,7 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import { getProducts } from "../../services/product.service";
 import { FilterState } from "../../store/use-filter-store";
 import { BuildImageUrl } from "../../helpers/buildImageUrl";
+import { ProductInterface } from "../../interfaces/product";
 
 interface productsInfinityQueryParam {
   filters?: FilterState;
@@ -55,7 +56,7 @@ export const useProductIninityQuery = ({
     .map((product) => ({
       ...product,
       photo: BuildImageUrl(product.photo),
-    }));
+    })) as ProductInterface[];
 
   return {
     products,
