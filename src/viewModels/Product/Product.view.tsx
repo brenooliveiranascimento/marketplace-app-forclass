@@ -8,6 +8,11 @@ export const ProductView: FC<ReturnType<typeof useProductViewModel>> = ({
   error,
   isLoading,
   productDetails,
+  getCommentsError,
+  getCommentsLoading,
+  handleEndReched,
+  handleRefetch,
+  comments,
 }) => {
   if (error) {
     return <Text>Houve um erro ao carregar os detalhes do produto</Text>;
@@ -20,7 +25,7 @@ export const ProductView: FC<ReturnType<typeof useProductViewModel>> = ({
   return (
     <SafeAreaView className="flex-1 bg-background">
       <FlatList
-        data={[]}
+        data={comments}
         renderItem={() => <></>}
         ListHeaderComponent={<Header productDetails={productDetails} />}
         className="px-6"

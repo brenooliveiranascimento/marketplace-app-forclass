@@ -30,7 +30,7 @@ export const useGetCommentsInfiniteQuery = (productId: number) => {
         user: {
           ...comment.user,
           avatar: {
-            url: BuildImageUrl(comment.user.avatar.url),
+            url: BuildImageUrl(comment.user.avatar?.url ?? ""),
           },
         },
       })) ?? [];
