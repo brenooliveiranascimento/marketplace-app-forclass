@@ -31,14 +31,15 @@ export const useCartStore = create<CartStore>()(
 
       addItem: (newProduct) =>
         set((state) => {
-          const newItems = cartService.addProdcutToCart(
+          const newProductList = cartService.addProdcutToCart(
             state.products,
             newProduct
           );
+          const total = cartService.calculateTotal(newProductList);
 
           return {
-            prodts: newItems,
-            total: 1,
+            prodts: newProductList,
+            total,
           };
         }),
       clearCart: () => set({ products: [], total: 0 }),
