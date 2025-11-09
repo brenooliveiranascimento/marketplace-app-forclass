@@ -4,6 +4,9 @@ import { useProductViewModel } from "./useProduct.viewModel";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Header } from "./components/Header";
 import { CommentItem } from "./components/CommentItem";
+import { ListFooter } from "./components/ListFooter";
+import { EmptyList } from "./components/EmptyList";
+import { Loading } from "./components/Loading";
 
 export const ProductView: FC<ReturnType<typeof useProductViewModel>> = ({
   error,
@@ -14,6 +17,8 @@ export const ProductView: FC<ReturnType<typeof useProductViewModel>> = ({
   handleEndReched,
   handleRefetch,
   comments,
+  isRefetching,
+  isFetchingNextPage,
 }) => {
   if (error) {
     return <Text>Houve um erro ao carregar os detalhes do produto</Text>;
@@ -23,6 +28,10 @@ export const ProductView: FC<ReturnType<typeof useProductViewModel>> = ({
     return null;
   }
 
+  if (isLoading) {
+    return <Loading />;
+  }
+
   return (
     <SafeAreaView className="flex-1 bg-background">
       <FlatList
@@ -30,6 +39,13 @@ export const ProductView: FC<ReturnType<typeof useProductViewModel>> = ({
         renderItem={({ item }) => <CommentItem comment={item} />}
         ListHeaderComponent={<Header productDetails={productDetails} />}
         className="px-6"
+        onEndReached={handleEndReched}
+        onRefresh={handleRefetch}
+        refreshing={isRefetching}
+        ListFooterComponent={<ListFooter isLoadingMore={isFetchingNextPage} />}
+        ListEmptyComponent={
+          <EmptyList isLoadingComments={getCommentsLoading} />
+        }
       />
     </SafeAreaView>
   );
