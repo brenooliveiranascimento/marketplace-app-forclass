@@ -1,3 +1,47 @@
+import { useEffect, useState } from "react";
+import { useGetUserCommentQuery } from "../../../../shared/queries/comments/use-get-user-comment.query";
+
+interface RatingFormInterface {
+  content: string;
+  rating: number;
+  isEditing: boolean;
+}
+
+const initialFormValue: RatingFormInterface = {
+  content: "",
+  isEditing: false,
+  rating: 0,
+};
+
 export const useReviewBottomSheetViewModel = (productId: number) => {
-  return {};
+  const [ratingForm, setRatingForm] = useState(initialFormValue);
+
+  const { data: userComment, isLoading: loadingUserComment } =
+    useGetUserCommentQuery(productId);
+
+  const handleRatingChange = (rating: number) => {
+    setRatingForm((prevData) => ({ ...prevData, rating }));
+  };
+
+  const handleContentChange = (content: string) => {
+    setRatingForm((prevData) => ({ ...prevData, content }));
+  };
+
+  useEffect(() => {
+    if (userComment && userComment.content && userComment.rating) {
+      setRatingForm({
+        content: userComment.content,
+        rating: userComment.rating,
+        isEditing: true,
+      });
+    } else {
+      setRatingForm(initialFormValue);
+    }
+  }, [userComment]);
+
+  return {
+    handleRatingChange,
+    handleContentChange,
+    ratingForm,
+  };
 };
