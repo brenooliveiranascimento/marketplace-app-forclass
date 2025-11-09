@@ -9,11 +9,13 @@ import { router } from "expo-router";
 
 interface HeaderParams {
   productDetails: GetProductDetailInterface;
+  handleOpenReview: () => void;
 }
 
-export const Header: FC<HeaderParams> = ({ productDetails }) => {
-  console.log({ productDetails });
-
+export const Header: FC<HeaderParams> = ({
+  productDetails,
+  handleOpenReview,
+}) => {
   return (
     <>
       <View className="pb-5 items-start">
@@ -103,7 +105,7 @@ export const Header: FC<HeaderParams> = ({ productDetails }) => {
         <View className="flex-row justify-between items-center pt-4 border-t border-gray-200">
           <Text className="text-lg font-bol text-gray-800">Avaliações</Text>
 
-          <TouchableOpacity>
+          <TouchableOpacity onPress={handleOpenReview}>
             <Text className="text-purple-base text-base font-medium">
               Avaliar
             </Text>
