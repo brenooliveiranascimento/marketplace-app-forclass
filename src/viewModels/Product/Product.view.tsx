@@ -7,6 +7,8 @@ import { CommentItem } from "./components/CommentItem";
 import { ListFooter } from "./components/ListFooter";
 import { EmptyList } from "./components/EmptyList";
 import { Loading } from "./components/Loading";
+import { Error } from "./components/Error";
+import { GetProductDetailInterface } from "../../shared/interfaces/http/product-detail";
 
 export const ProductView: FC<ReturnType<typeof useProductViewModel>> = ({
   error,
@@ -20,24 +22,20 @@ export const ProductView: FC<ReturnType<typeof useProductViewModel>> = ({
   isRefetching,
   isFetchingNextPage,
 }) => {
-  if (error) {
-    return <Text>Houve um erro ao carregar os detalhes do produto</Text>;
-  }
+  if (error) return <Error />;
 
-  if (!productDetails) {
-    return null;
-  }
-
-  if (isLoading) {
-    return <Loading />;
-  }
+  if (isLoading) <Loading />;
 
   return (
     <SafeAreaView className="flex-1 bg-background">
       <FlatList
         data={comments}
         renderItem={({ item }) => <CommentItem comment={item} />}
-        ListHeaderComponent={<Header productDetails={productDetails} />}
+        ListHeaderComponent={
+          <Header
+            productDetails={productDetails as GetProductDetailInterface}
+          />
+        }
         className="px-6"
         onEndReached={handleEndReched}
         onRefresh={handleRefetch}
