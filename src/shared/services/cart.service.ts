@@ -7,12 +7,12 @@ export const cartService = {
     productList: CartProduct[],
     newProduct: OmitedProductCart
   ) => {
-    const exitingProduct = cartService.findExistingProduct(
+    const existingProduct = cartService.findExistingProduct(
       productList,
       newProduct.id
     );
 
-    if (exitingProduct) {
+    if (existingProduct) {
       const products = productList.map((product) => {
         if (product.id == newProduct.id) {
           return { ...product, quantity: product.quantity + 1 };
@@ -28,7 +28,7 @@ export const cartService = {
     const products = [...productList, { ...newProduct, quantity: 1 }];
     const total = cartService.calculateTotal(products);
     return {
-      prodcts: products,
+      products,
       total,
     };
   },
