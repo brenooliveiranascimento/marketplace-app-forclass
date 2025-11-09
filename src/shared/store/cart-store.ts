@@ -34,12 +34,19 @@ export const useCartStore = create<CartStore>()(
           cartService.addProdcutToCart(state.products, newProduct)
         ),
       clearCart: () => set({ products: [], total: 0 }),
-      getItemCount: () => 0,
+      getItemCount: () => cartService.getItemCount(get().products),
       removeProduct: (productId) =>
         set((state) =>
           cartService.removeProductFromList(state.products, productId)
         ),
-      updateQuantity: () => set({}),
+      updateQuantity: ({ productId, quantity }) =>
+        set((state) =>
+          cartService.updateProductQuantity({
+            productId,
+            quantity,
+            productList: state.products,
+          })
+        ),
     }),
     {
       name: "marketplace-cart",

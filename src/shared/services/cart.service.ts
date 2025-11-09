@@ -45,4 +45,33 @@ export const cartService = {
       total,
     };
   },
+
+  updateProductQuantity: ({
+    productId,
+    productList,
+    quantity,
+  }: {
+    productList: CartProduct[];
+    productId: number;
+    quantity: number;
+  }) => {
+    if (quantity <= 0) {
+      return cartService.removeProductFromList(productList, productId);
+    }
+
+    const products = productList.map((produt) => {
+      if (produt.id === productId) {
+        return { ...produt, quantity };
+      } else {
+        return produt;
+      }
+    });
+
+    return {
+      products,
+      total: cartService.calculateTotal(products),
+    };
+  },
+  getItemCount: (productList: CartProduct[]) =>
+    productList.reduce((acc, product) => acc + product.quantity, 0),
 };
