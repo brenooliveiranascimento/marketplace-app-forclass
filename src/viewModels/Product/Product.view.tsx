@@ -24,18 +24,14 @@ export const ProductView: FC<ReturnType<typeof useProductViewModel>> = ({
 }) => {
   if (error) return <Error />;
 
-  if (isLoading) <Loading />;
+  if (isLoading || !productDetails) return <Loading />;
 
   return (
     <SafeAreaView className="flex-1 bg-background">
       <FlatList
         data={comments}
         renderItem={({ item }) => <CommentItem comment={item} />}
-        ListHeaderComponent={
-          <Header
-            productDetails={productDetails as GetProductDetailInterface}
-          />
-        }
+        ListHeaderComponent={<Header productDetails={productDetails} />}
         className="px-6"
         onEndReached={handleEndReched}
         onRefresh={handleRefetch}
