@@ -9,6 +9,7 @@ import { EmptyList } from "./components/EmptyList";
 import { Loading } from "./components/Loading";
 import { Error } from "./components/Error";
 import { GetProductDetailInterface } from "../../shared/interfaces/http/product-detail";
+import { AddToCartFooter } from "./components/AddToCartFooter";
 
 export const ProductView: FC<ReturnType<typeof useProductViewModel>> = ({
   error,
@@ -27,7 +28,7 @@ export const ProductView: FC<ReturnType<typeof useProductViewModel>> = ({
   if (isLoading || !productDetails) return <Loading />;
 
   return (
-    <SafeAreaView className="flex-1 bg-background">
+    <SafeAreaView edges={["top"]} className="flex-1 bg-background">
       <FlatList
         data={comments}
         renderItem={({ item }) => <CommentItem comment={item} />}
@@ -40,7 +41,9 @@ export const ProductView: FC<ReturnType<typeof useProductViewModel>> = ({
         ListEmptyComponent={
           <EmptyList isLoadingComments={getCommentsLoading} />
         }
+        contentContainerClassName="pb-6"
       />
+      <AddToCartFooter product={productDetails} />
     </SafeAreaView>
   );
 };
