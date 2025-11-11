@@ -4,8 +4,13 @@ import { Ionicons } from "@expo/vector-icons";
 import { colors } from "../../../../styles/colors";
 import { AppButton } from "../../../../shared/components/AppButton";
 import { useCartStore } from "../../../../shared/store/cart-store";
+import { FC } from "react";
 
-export const CartFooter = () => {
+interface CartFooterParams {
+  openCartBottomSheet: () => void;
+}
+
+export const CartFooter: FC<CartFooterParams> = ({ openCartBottomSheet }) => {
   const { total } = useCartStore();
 
   return (
@@ -31,7 +36,10 @@ export const CartFooter = () => {
               size={20}
               color={colors["purple-base"]}
             />
-            <Text className="text-purple-base ml-2 text-sm font-bold">
+            <Text
+              onPress={openCartBottomSheet}
+              className="text-purple-base ml-2 text-sm font-bold"
+            >
               Adicionar cartão
             </Text>
           </TouchableOpacity>
