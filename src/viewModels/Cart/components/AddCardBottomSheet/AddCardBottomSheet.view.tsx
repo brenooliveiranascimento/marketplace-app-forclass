@@ -78,7 +78,7 @@ export const AddCardBottomSheetView: FC<
           </View>
 
           <View className="flex-1">
-            <AppButton>Salvar</AppButton>
+            <AppButton onPress={handleCreateCreditCard}>Salvar</AppButton>
           </View>
         </View>
       </View>

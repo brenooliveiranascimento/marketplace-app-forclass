@@ -11,7 +11,7 @@ export const useCartViewModel = () => {
 
   const { data: creditCards = [], isLoading: loadingCreditCards } =
     useGetCreditCardsQuery();
-
+  console.log(creditCards);
   const openCartBottomSheet = () => {
     openBottomSheet({ content: createElement(AddCardBottomSheet) });
   };
