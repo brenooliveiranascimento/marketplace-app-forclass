@@ -24,7 +24,7 @@ export const Header: FC<HeaderParams> = ({
           className="w-full justify-start flex-row items-center gap-3"
         >
           <Ionicons name="arrow-back" size={24} color={colors["purple-base"]} />
-          <Text className="text-base text-purple-base">Voltas</Text>
+          <Text className="text-base text-purple-base">Voltar</Text>
         </TouchableOpacity>
       </View>
 
