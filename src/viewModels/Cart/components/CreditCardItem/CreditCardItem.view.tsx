@@ -19,6 +19,7 @@ export const CreditCardItemView: FC<
 }) => {
   return (
     <TouchableOpacity
+      activeOpacity={0.8}
       onPress={() => setSelectedCreditCard(creditCard)}
       className={`p-4 rounded-lg border-[1px] bg-white ${
         isSelected ? "border-purple-base" : "border-gray-100"
