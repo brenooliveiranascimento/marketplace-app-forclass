@@ -12,6 +12,7 @@ import { AppButton } from "../../../../shared/components/AppButton";
 import { useCartStore } from "../../../../shared/store/cart-store";
 import { FC } from "react";
 import { CreditCard } from "../../../../shared/interfaces/credit-card";
+import { CreditDardItem } from "../CreditCardItem";
 
 interface CartFooterParams {
   openCartBottomSheet: () => void;
@@ -68,7 +69,8 @@ export const CartFooter: FC<CartFooterParams> = ({
         ) : (
           <FlatList
             data={creditCards}
-            renderItem={({ item }) => <Text>{item.titularName}</Text>}
+            renderItem={({ item }) => <CreditDardItem creditCard={item} />}
+            className="gap-2"
           />
         )}
 
