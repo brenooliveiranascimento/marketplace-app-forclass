@@ -56,7 +56,11 @@ export const AppButton: FC<AppButtonProps> = ({
   };
 
   return (
-    <TouchableOpacity className={styles.base({ className })} {...rest}>
+    <TouchableOpacity
+      activeOpacity={0.9}
+      className={styles.base({ className })}
+      {...rest}
+    >
       {renderContent()}
     </TouchableOpacity>
   );
