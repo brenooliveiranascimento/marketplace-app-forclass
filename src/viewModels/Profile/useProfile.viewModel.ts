@@ -14,10 +14,6 @@ import { useUploadAvarMutation } from "../../shared/queries/auth/use-upload-avat
 export const useProfileViewModel = () => {
   const { user, logout } = useUserStore();
 
-  const [avatarUri, setAvatarUri] = useState<string | null>(
-    user?.avatarUrl ?? null
-  );
-
   const updateProfileMutation = useUpdateProfileMutation();
   const { showSelection } = useAppModal();
   const { close } = useModalStore();
@@ -25,13 +21,10 @@ export const useProfileViewModel = () => {
 
   const uploadAvatarMutation = useUploadAvarMutation();
 
-  const { loading, handleSelectImage } = useImage({
+  const { handleSelectImage } = useImage({
     callback: async (url) => {
       if (url) {
-        const { url: responseUrl } = await uploadAvatarMutation.mutateAsync(
-          url
-        );
-        setAvatarUri(responseUrl);
+        await uploadAvatarMutation.mutateAsync(url);
       }
     },
     cameraType: CameraType.front,
@@ -95,7 +88,7 @@ export const useProfileViewModel = () => {
   return {
     onSubmit,
     control,
-    avatarUri,
+    avatarUri: user?.avatarUrl,
     isSubmitting,
     handleLogout,
     handleSelectImage,
