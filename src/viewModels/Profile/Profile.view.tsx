@@ -14,12 +14,16 @@ export const ProfileView: FC<ReturnType<typeof useProfileViewModel>> = ({
   onSubmit,
   isSubmitting,
   handleLogout,
+  handleSelectImage,
 }) => {
   return (
     <KeyboardContainer>
       <ScrollView className="flex-1 px-[40px]">
         <Header handleLogout={handleLogout} />
-        <TouchableOpacity className="w-[120px] h-[120px] rounded-[12px] items-center justify-center bg-shape self-center mb-8 mt-6">
+        <TouchableOpacity
+          onPress={handleSelectImage}
+          className="w-[120px] h-[120px] rounded-[12px] items-center justify-center bg-shape self-center mb-8 mt-6"
+        >
           {avatarUri ? (
             <Image
               className="w-full h-full rounded-[12px]"
@@ -61,7 +65,7 @@ export const ProfileView: FC<ReturnType<typeof useProfileViewModel>> = ({
 
         <AppInputController
           leftIcon="lock-closed-outline"
-          label="SENHA"
+          label="SENHA ATUAL"
           control={control}
           name="password"
           placeholder="Sua senha"
@@ -70,11 +74,11 @@ export const ProfileView: FC<ReturnType<typeof useProfileViewModel>> = ({
 
         <AppInputController
           leftIcon="lock-closed-outline"
-          label="CONFIRMAR SENHA"
+          label="NOVA SENHA"
           control={control}
-          name="confirmPassword"
+          name="newPassword"
           secureTextEntry
-          placeholder="Confirme a senha"
+          placeholder="Sua nova senha"
         />
 
         <AppButton className="mt-6" onPress={onSubmit} isLoading={isSubmitting}>
