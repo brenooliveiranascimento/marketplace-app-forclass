@@ -4,11 +4,13 @@ import { CreditCard } from "../../../../shared/interfaces/credit-card";
 import { useSubmitOrderMutation } from "../../../../shared/queries/orders/use-submit-order.mutation";
 import { Toast } from "toastify-react-native";
 import { router } from "expo-router";
+import { useAppModal } from "../../../../shared/hooks/useAppModal";
 
 export const useCartFooterViewModel = () => {
   const [selectedCreditCard, setSelectedCreditCard] =
     useState<null | CreditCard>(null);
   const { total, products, clearCart } = useCartStore();
+  const { showSuccess } = useAppModal();
 
   const createOrderMutation = useSubmitOrderMutation();
 
@@ -20,7 +22,15 @@ export const useCartFooterViewModel = () => {
       items: products.map(({ id, quantity }) => ({ productId: id, quantity })),
     });
     clearCart();
-    router.push("/orders");
+
+    showSuccess({
+      title: "Sucesso!",
+      message: "Pedido feito com sucesso!",
+      buttonText: "Ver pedidos",
+      onButtonPress: () => {
+        router.push("/orders");
+      },
+    });
   };
 
   return {
