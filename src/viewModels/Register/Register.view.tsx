@@ -58,7 +58,7 @@ export const RegisterView: FC<ReturnType<typeof useRegisterViewModel>> = ({
           label="E-MAIL"
           control={control}
           name="email"
-          placeholder="mail@exemple.com.be"
+          placeholder="mail@exemple.com.br"
         />
 
         <AppInputController

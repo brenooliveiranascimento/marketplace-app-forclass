@@ -54,7 +54,7 @@ export const ProfileView: FC<ReturnType<typeof useProfileViewModel>> = ({
           label="E-MAIL"
           control={control}
           name="email"
-          placeholder="mail@exemple.com.be"
+          placeholder="mail@exemple.com.br"
         />
 
         <AppInputController
