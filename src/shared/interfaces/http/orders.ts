@@ -1,11 +1,9 @@
 export interface SubmitOrderRequestParamsInterface {
   creditCardId: number;
-  items: [
-    {
-      productId: number;
-      quantity: number;
-    }
-  ];
+  items: {
+    productId: number;
+    quantity: number;
+  }[];
 }
 
 export interface SubmitOrderResponse {

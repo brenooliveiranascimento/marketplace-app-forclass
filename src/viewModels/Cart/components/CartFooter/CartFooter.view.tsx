@@ -23,6 +23,8 @@ export const CartFooterView: FC<
   total,
   selectedCreditCard,
   setSelectedCreditCard,
+  isOrderLoading,
+  submitOrderMutation,
 }) => {
   return (
     <View className="bg-white p-4 rounded-lg mt-6">
@@ -77,7 +79,13 @@ export const CartFooterView: FC<
           />
         )}
 
-        <AppButton className="mt-4">Confirmar Compra</AppButton>
+        <AppButton
+          onPress={submitOrderMutation}
+          className="mt-4"
+          isLoading={isOrderLoading}
+        >
+          Confirmar Compra
+        </AppButton>
       </View>
     </View>
   );
