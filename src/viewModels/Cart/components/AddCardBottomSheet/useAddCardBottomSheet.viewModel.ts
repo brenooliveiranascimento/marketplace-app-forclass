@@ -112,8 +112,6 @@ export const useAddCardBottomSheetViewModel = () => {
 
   const isFlipped = focusedField === "cvv";
 
-  console.log(focusedField);
-
   return {
     handleCreateCreditCard,
     control,
