@@ -6,6 +6,7 @@ import { colors } from "../../../../styles/colors";
 import { AppInput } from "../../../../shared/components/AppInput";
 import { AppButton } from "../../../../shared/components/AppButton";
 import { AppInputController } from "../../../../shared/components/AppInputController";
+import { CreditCard } from "./components/CreditCard";
 
 export const AddCardBottomSheetView: FC<
   ReturnType<typeof useAddCardBottomSheetViewModel>
@@ -26,6 +27,8 @@ export const AddCardBottomSheetView: FC<
             <Ionicons name="close" size={24} color={colors.gray[400]} />
           </TouchableOpacity>
         </View>
+
+        <CreditCard />
 
         <View className="mt-6 gap-4">
           <AppInputController
