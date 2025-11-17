@@ -6,6 +6,7 @@ import { colors } from "../../../../../../styles/colors";
 import Animated from "react-native-reanimated";
 import { LinearGradient } from "expo-linear-gradient";
 import clsx from "clsx";
+import { CardData } from ".";
 
 const PURPLE_GRADIENT: readonly [string, string, string] = [
   "#5B3A8F",
@@ -16,8 +17,16 @@ const PURPLE_GRADIENT: readonly [string, string, string] = [
 export const CreditCardView: FC<
   ReturnType<typeof useCreditCardViewModel> & {
     focusedField: FocusedField | null;
+  } & {
+    cardData: CardData;
   }
-> = ({ focusedField, backAnimatedStyle, frontAnimatedStyle }) => {
+> = ({
+  focusedField,
+  backAnimatedStyle,
+  frontAnimatedStyle,
+  cardData,
+  formatCardNumber,
+}) => {
   return (
     <View className="h-[192px]">
       <Animated.View
@@ -46,7 +55,7 @@ export const CreditCardView: FC<
             })}
           >
             <Text className="text-white text-lg tracking-widest text-center">
-              123
+              {formatCardNumber(cardData.number)}
             </Text>
           </View>
 
@@ -60,7 +69,7 @@ export const CreditCardView: FC<
                 PORTADOR
               </Text>
               <Text className="text-white font-sm font-bold uppercase">
-                NOME DO TITULAR
+                {cardData.name.length ? cardData.name : "NOME DO TITULAR"}
               </Text>
             </View>
 
@@ -73,7 +82,9 @@ export const CreditCardView: FC<
               <Text className="text-white text-xs mb-1 font-semibold">
                 VÁLIDO ATÉ
               </Text>
-              <Text className="text-white text-sm font-bold">"MM/AA"</Text>
+              <Text className="text-white text-sm font-bold">
+                {cardData.expiry.length ? cardData.expiry : "MM/AA"}
+              </Text>
             </View>
           </View>
         </LinearGradient>
@@ -106,7 +117,7 @@ export const CreditCardView: FC<
                   "bg-blue-100": focusedField === "cvv",
                 })}
               >
-                <Text>...</Text>
+                <Text>{cardData.cvv || "..."}</Text>
               </View>
             </View>
           </View>

@@ -112,6 +112,8 @@ export const useAddCardBottomSheetViewModel = () => {
 
   const isFlipped = focusedField === "cvv";
 
+  const watchedValue = watch();
+
   return {
     handleCreateCreditCard,
     control,
@@ -121,5 +123,11 @@ export const useAddCardBottomSheetViewModel = () => {
     handleFieldFocus,
     handleFieldBlur,
     focusedField,
+    carData: {
+      number: watchedValue.number,
+      name: watchedValue.titularName,
+      expiry: watchedValue.expirationDate,
+      cvv: watchedValue.CVV,
+    },
   };
 };
