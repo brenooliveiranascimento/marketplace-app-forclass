@@ -41,7 +41,6 @@ export const CreditCardView: FC<
 
           <View
             className={clsx("py-2 px-1 roundd-lg mb-6 rounded-lg", {
-              "": focusedField !== "number",
               "bg-white/20": focusedField === "number",
             })}
           >
@@ -53,7 +52,6 @@ export const CreditCardView: FC<
           <View className="flex-row justify-between items-end">
             <View
               className={clsx("flex-1 py-2 px-2 rounded-lg", {
-                "": focusedField !== "name",
                 "bg-white/20": focusedField === "name",
               })}
             >
@@ -80,7 +78,38 @@ export const CreditCardView: FC<
         </LinearGradient>
       </Animated.View>
 
-      <Animated.View></Animated.View>
+      <Animated.View
+        style={[
+          {
+            position: "absolute",
+            width: "100%",
+            height: 192,
+            backfaceVisibility: "hidden",
+          },
+        ]}
+      >
+        <LinearGradient
+          colors={PURPLE_GRADIENT}
+          start={{ x: 0, y: 0.5 }}
+          style={{ flex: 1, borderRadius: 16 }}
+        >
+          <View className="h-[40px] bg-black w-[100%] mt-[20px]" />
+
+          <View className="flex-1 justify-center items-end px-5">
+            <View className="w-24">
+              <Text className="text-white mb-2 text-xs font-semibold">CVV</Text>
+
+              <View
+                className={clsx("bg-white p-2 rounded h-8 justify-center", {
+                  "bg-blue-100": focusedField === "cvv",
+                })}
+              >
+                <Text>...</Text>
+              </View>
+            </View>
+          </View>
+        </LinearGradient>
+      </Animated.View>
     </View>
   );
 };
